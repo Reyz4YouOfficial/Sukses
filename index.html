@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Sukses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5; /* Warna latar belakang body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Menggunakan min-height agar responsif */
+            margin: 0;
+            font-family: 'Roboto', sans-serif; /* Menggunakan Roboto font */
+            padding: 20px; /* Padding agar tidak terlalu mepet di layar kecil */
+            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+        }
+
+        .card-container {
+            background: white;
+            padding: 40px;
+            border-radius: 24px; /* Sudut melengkung */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* Bayangan */
+            text-align: center;
+            max-width: 400px;
+            width: 100%; /* Menggunakan 100% lebar untuk responsif */
+            box-sizing: border-box;
+        }
+
+        /* Styling untuk Centang Hijau Solid */
+        .checkmark-circle-solid {
+            width: 90px;
+            height: 90px;
+            background-color: #4CAF50; /* Warna hijau solid */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px; /* Margin bawah */
+        }
+
+        .checkmark-icon {
+            color: white; /* Warna centang putih */
+            font-size: 50px; /* Ukuran centang */
+            font-weight: bold;
+            line-height: 1; /* Agar centang pas di tengah */
+        }
+
+        /* Menggunakan SVG atau custom font untuk ikon centang jika perlu
+           Namun untuk kesederhanaan, kita bisa pakai karakter unicode '✓' */
+        .checkmark-icon::before {
+            content: '✓';
+        }
+
+        h2 {
+            color: #333;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px; /* Jarak bawah dari judul */
+        }
+
+        .instruction-box {
+            background-color: #e8f5e9; /* Latar belakang hijau muda */
+            border: 1px dashed #4CAF50; /* Border putus-putus hijau */
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px; /* Jarak atas */
+            margin-bottom: 30px; /* Jarak bawah */
+            text-align: left; /* Teks rata kiri */
+        }
+
+        .instruction-text {
+            color: #1b5e20; /* Warna teks hijau gelap */
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .instruction-text strong {
+            font-weight: 700;
+            color: #000; /* Warna hitam untuk "PENTING" */
+        }
+
+        /* Ikon Kamera */
+        .instruction-text .camera-icon::before {
+            content: '📸'; /* Emoji kamera */
+            margin-right: 8px;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+        /* Ikon Owner */
+        .instruction-text .owner-icon::before {
+            content: '⚙️'; /* Emoji gear untuk owner, atau bisa juga 👤 */
+            margin-right: 5px;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+
+        .timestamp {
+            font-size: 13px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="checkmark-circle-solid">
+            <span class="checkmark-icon"></span>
+        </div>
+
+        <h2>Pembayaran Sukses</h2>
+        
+        <div class="instruction-box">
+            <p class="instruction-text">
+                <span class="camera-icon"></span><strong>PENTING:</strong><br>
+                Silakan screenshot (SS) halaman ini <br>untuk proses verifikasi manual.<br>
+            </p>
+        </div>
+
+        <div class="timestamp" id="date-time"></div>
+    </div>
+
+    <script>
+        // Fungsi untuk mendapatkan nama hari dalam bahasa Indonesia
+        function getDayNameID(dayIndex) {
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            return days[dayIndex];
+        }
+
+        // Fungsi untuk mendapatkan nama bulan dalam bahasa Indonesia
+        function getMonthNameID(monthIndex) {
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            return months[monthIndex];
+        }
+
+        // Menampilkan tanggal dan waktu saat ini sesuai format di gambar
+        const now = new Date();
+        const dayName = getDayNameID(now.getDay());
+        const dayOfMonth = now.getDate();
+        const monthName = getMonthNameID(now.getMonth());
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+
+        const formattedDateTime = `${dayName}, ${dayOfMonth} ${monthName} ${year}, ${hours}:${minutes}`;
+        document.getElementById('date-time').innerText = formattedDateTime;
+    </script>
+
+</body>
+</html>
